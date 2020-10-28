@@ -1,0 +1,12 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "drv_led.h": "c",
+        "drv_dr16.h": "c",
+        "cmath": "cpp",
+        "limits": "cpp",
+        "*.tcc": "cpp",
+        "type_traits": "cpp",
+        "sys.h": "c"
+    }
+}
