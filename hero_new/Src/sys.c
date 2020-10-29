@@ -20,7 +20,7 @@ struct pid RM3508_0_PID = {
             .i = 0,
             .d = 0,
             .inte_limit = 0,
-            .max_out = 8000,
+            .max_out = 20000,
         },
 };
 struct pid RM3508_1_PID = {
@@ -30,7 +30,7 @@ struct pid RM3508_1_PID = {
             .i = 0,
             .d = 0,
             .inte_limit = 0,
-            .max_out = 8000,
+            .max_out = 20000,
         },
 };
 struct pid RM3508_2_PID = {
@@ -40,7 +40,7 @@ struct pid RM3508_2_PID = {
             .i = 0,
             .d = 0,
             .inte_limit = 0,
-            .max_out = 8000,
+            .max_out = 20000,
         },
 };
 struct pid RM3508_3_PID = {
@@ -50,7 +50,7 @@ struct pid RM3508_3_PID = {
             .i = 0,
             .d = 0,
             .inte_limit = 0,
-            .max_out = 8000,
+            .max_out = 20000,
         },
 };
 /*底盘跟随速度*/
@@ -77,9 +77,9 @@ chassis_data chassis = {
                     .rotate_y_offset =
                         -7, /* 相对于底盘中心的y轴旋转偏移量(mm) */
                     .deceleration_ratio = 1.0f / 14.0f, /*电机减速比*/
-                    .max_vx_speed = 1000, /*底盘的x轴的最大速度(mm/s)*/
-                    .max_vy_speed = 1000, /*底盘的y轴的最大速度(mm/s)*/
-                    .max_vw_speed = 1200, /*底盘的自转的最大速度(degree/s)*/
+                    .max_vx_speed = 3000, /*底盘的x轴的最大速度(mm/s)*/
+                    .max_vy_speed = 3000, /*底盘的y轴的最大速度(mm/s)*/
+                    .max_vw_speed = 1400, /*底盘的自转的最大速度(degree/s)*/
                     .max_wheel_ramp = 8500, /*3508最大转速*/
                 },
             .speed =
@@ -113,7 +113,7 @@ chassis_data chassis = {
 struct pid pitch_speed_PID = {
     .param =
         {
-            .p = 30,
+            .p = 27,
             .i = 0,
             .d = 0,
             .max_out = 6000,
@@ -122,7 +122,7 @@ struct pid pitch_speed_PID = {
 struct pid pitch_positio_PID = {
     .param =
         {
-            .p = 29.5,
+            .p = 26.5,
             .i = 0,
             .d = 0,
             .max_out = 8191,
@@ -140,9 +140,9 @@ struct pid yaw_speed_PID = {
 struct pid yaw_positio_PID = {
     .param =
         {
-            .p = 10,
+            .p = 12,
             .i = 0,
-            .d = 0,
+            .d = 0.3,
             .inte_limit = 300,
             .max_out = 29000,
         },
@@ -202,7 +202,7 @@ struct pid frictiongear_left_PID = {
             .p = 20,
             .i = 0,
             .d = 0,
-            .max_out = 2000,
+            .max_out = 6000,
         },
 };
 struct pid frictiongear_right_PID = {
@@ -211,7 +211,7 @@ struct pid frictiongear_right_PID = {
             .p = 20,
             .i = 0,
             .d = 0,
-            .max_out = 2000,
+            .max_out = 6000,
         },
 };
 struct pid pluck_positio_PID = {

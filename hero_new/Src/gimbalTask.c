@@ -95,7 +95,7 @@ static void yawControl(void) {
         gimbal.gimbal_encoder.yaw_encoder->filter_rate, position_out);
     gimbal.gyor_yaw_data.GyroAngle_Bias = gimbal.gyor_yaw_data.ecd_Angle;
   } else if (gimbal.gimbal_mode == keyboard) { /*键盘模式*/
-    gimbal.gimbal_angel.yaw_dbus_angle = -rcDevice.rc_info.mouse.x * 0.05;
+    gimbal.gimbal_angel.yaw_dbus_angle = -rcDevice.rc_info.mouse.x * 0.1;
     VAL_LIMIT(gimbal.gimbal_angel.yaw_dbus_angle, -60, 60);
     position_out =
         pid_calculate(gimbal.gimbal_pid.yaw_positio_PID,
@@ -134,7 +134,7 @@ static void pitchControl(void) {
         gimbal.gimbal_pid.pitch_speed_PID,
         gimbal.gimbal_encoder.pitch_encoder->filter_rate, -position_out);
   } else if (gimbal.gimbal_mode == keyboard) {
-    gimbal.gimbal_angel.pitch_dbus_angle += rcDevice.rc_info.mouse.y * 0.0001f;
+    gimbal.gimbal_angel.pitch_dbus_angle -= rcDevice.rc_info.mouse.y * 0.0003f;
     VAL_LIMIT(gimbal.gimbal_angel.pitch_dbus_angle, -15, 15);
     position_out = pid_calculate(gimbal.gimbal_pid.pitch_positio_PID,
                                  gimbal.gimbal_encoder.pitch_encoder->ecd_angle,

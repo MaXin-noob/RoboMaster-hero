@@ -11,8 +11,8 @@
 #include "main.h"
 /*********************Special* options***************************/
 /*是否禁用相关的功能，禁用之后can将不发送相关数据*/
-#define FORBID_CHASSIS 1      /*是否禁用底盘，0为不禁用*/
-#define FORBID_FIRCTIONGEAR 0 /*是否禁用摩擦轮，0为不禁用*/
+#define FORBID_CHASSIS 0      /*是否禁用底盘，0为不禁用*/
+#define FORBID_FIRCTIONGEAR 0/*是否禁用摩擦轮，0为不禁用*/
 #define FORBID_GIMBAL 0       /*是否禁用云台，0为不禁用*/
 #define FORBID_NIMING 1       /*是否禁用匿名，0为不禁用*/
 

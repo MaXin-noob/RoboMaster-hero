@@ -12,6 +12,7 @@ static void MecanumCalculate(struct mecanum *mec);
 static void ChassisModeControl(void);
 void loop_float_constrain(float *Input, float minValue, float maxValue);
 
+static void chassis_power_control(void);
 /**
  * @description: chassis handle
  * @param[in]: void const *argument
@@ -60,7 +61,6 @@ void chassisHandler(void const *argument) {
     chassis.chassis_mecanum.speed.vy =
         -sin_calculating * ax + cos_calculating * ay; /*坐标系转换*/
     chassis.chassis_mecanum.speed.vw = chassis.chassis_pid_out.follow_OUT;
-    // chassis.chassis_mecanum.speed.vw =-rcDevice.rc_info.ch1 * 0.2f;
     ChassisModeControl(); /*模式控制*/
     MecanumCalculate(&chassis.chassis_mecanum);
     /*
@@ -82,6 +82,7 @@ void chassisHandler(void const *argument) {
     chassis.chassis_pid_out.RM3508_3_OUT = pid_calculate(
         chassis.chassis_pid.RM3508_3_PID, chassis.chassis_realy_speed.RM3508_3,
         chassis.chassis_mecanum.wheel_rpm[3]);
+chassis_power_control();
 #if FORBID_CHASSIS == 0
     if (gimbal.gimbal_mode != start_up) {
       sendCanData(&hcan2, RM3510_RM3508_ID_Send_0x200,
@@ -207,7 +208,7 @@ void loop_float_constrain(float *Input, float minValue, float maxValue) {
  * @param[in]: void
  * @return: void
  */
-void chassis_power_control(void) {
+static void chassis_power_control(void) {
   float CMRATO = 0.0f;                 //功率限制比例系数
   float Post_limiting_current = 0.0f;  //电流分配,平地模式下分配是均匀的
   float Sumpwoer = ABS(chassis.chassis_pid_out.RM3508_0_OUT) +

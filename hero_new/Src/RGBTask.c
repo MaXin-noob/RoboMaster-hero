@@ -20,9 +20,9 @@ void rgbHandler(void const *argument) {
   while (1) {
     color_flag = getFlashingColor();
     setLedColor(color_flag);
-    osDelay(500);
+    osDelay(100);
     color_flag = OFF;
     setLedColor(color_flag);
-    osDelay(500);
+    osDelay(100);
   }
 }
